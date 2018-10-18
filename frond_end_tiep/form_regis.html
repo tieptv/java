@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles1.css">
+    <script language="javascript">
+        function setCookie() {
+            alert("set cookies");
+            if (window.document.cookieForm.persist.checked) {
+                // Get the date and set it to next year
+                var expDate = new Date();
+                expDate.setFullYear(expDate.getFullYear() + 1);
+                var who =
+                    window.document.cookieForm.username.value;
+                document.cookie = "username=" + who + ";" +
+                "expires=" + expDate.toGMTString();
+            } else {
+                deleteCookie();
+            }
+            return true;
+        }
+        function readCookie() {
+            alert("read cookies");
+            if (document.cookie) {
+ 
+                var theCookie = document.cookie;
+                var pos = theCookie.indexOf("username=");
+                if (pos != -1) {
+                    var cookie_array = theCookie.split("=");
+                    var value = cookie_array[1];
+                    // Load the stored username into the form
+                    window.document.cookieForm.username.value = value;
+                    window.document.cookieForm.persist.checked = true;
+                }
+            }
+        }
+        function deleteCookie() {
+            if (document.cookie) {
+                alert("delete cookies");
+                // Get a date and set it to last year
+                var expDate = new Date();
+                expDate.setFullYear(expDate.getFullYear() - 1);
+                document.cookie = "username=" + "" + ";" +
+                    "expires=" + expDate.toGMTString();
+            }
+        }
+    </script>
+</head>
+
+<body onload="readCookie();">
+    <div style="height: 40px;">
+        <button id="login_btn">Login</button>
+    </div>
+    <div id="background_image">
+        <div id="input_image">
+            <div id="div_form">
+                <form name="cookieForm" onsubmit="setCookie();" action="form_regis.html" method="POST">
+
+                    <label  for="fname">First Name</label>
+                    <input type="text" id="fname" name="username" placeholder="UserName"><br>
+
+                    <label for="lname">PassWord</label>
+                    <input type="text" id="lname" name="pwd" placeholder="password"><br>
+
+                    <label for="country">Remember me</label>
+                    <br>
+                    <input type="checkbox" name="persist">
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<html>
+
+<head>
+
+    <script src="http://code.jquery.com/jquery-1.4.2.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#ajaxButton").click(function () {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "ajax.html",
+                    success: function (html) {
+                        jQuery("#responseDiv").html(html);
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <input type="button" value="ajax" id="ajaxButton" />
+    </div>
+    <div id="responseDiv"></div>
+</body>
+
+</html>
+<html>
+
+<head>
+
+    <script src="http://code.jquery.com/jquery-1.4.2.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#ajaxButton").click(function () {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "ajax.html",
+                    success: function (html) {
+                        jQuery("#responseDiv").html(html);
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <input type="button" value="ajax" id="ajaxButton" />
+    </div>
+    <div id="responseDiv"></div>
+</body>
+
+</html>

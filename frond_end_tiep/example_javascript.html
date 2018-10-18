@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script language="javascript">
+        function funt( ){
+         document.location="https://google.com";
+        }
+        function goPage() {
+            var pg = document.theForm.aPage.value;
+            location = "page" + pg + ".html";
+            }
+    </script>
+</head>
+<body>
+    <img src="./img/btn-green.png" Onclick="funt();">
+            <form name="theForm">
+            <select name="aPage" onChange="goPage();">
+            <option selected>Choose a page</option>
+            <option value="1">Page 1</option>
+            <option value="2">Page 2</option>
+            <option value="3">Page 3</option>
+            <option value="4">Page 4</option></select>
+            <input type="reset">
+            </form>
+</body>
+</html>
