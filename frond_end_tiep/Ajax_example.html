@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script language="javascript">
+        function load_ajax() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert("đã vào");
+                    document.getElementById("demo").innerHTML =
+                        this.responseText;
+                }
+            };
+            xhttp.open("GET", "ajax_info.txt", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="result">
+        Nội dung ajax sẽ được load ở đây
+    </div>
+    <input type="button" name="clickme" id="clickme" onclick="load_ajax()" value="Click Me" />
+</body>
+
+</html>

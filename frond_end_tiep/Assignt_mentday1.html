@@ -64,8 +64,9 @@
                     <li>
                         <h3 class="step_text">BƯỚC 1:ĐĂNG KÝ</h3>
                     </li>
-                    <li></li>
+                    <li>
                     Đăng kí để lại thông tin của bạn
+                </li>
                 </ul>
                 <ul class="step_in" style="list-style: none">
                     <li>
@@ -117,24 +118,24 @@
                     <li>
                         <img src="./img/benefit-1.jpg">
                     </li>
-                    <li>
-                        <h4>Không cần thi đầu vào</h4>
+                    <li style="text-align: center">
+                        Không cần thi đầu vào
                     </li>
                 </ul>
                 <ul class="benefit_ul" style="list-style: none">
                     <li>
                         <img src="./img/benefit-2.jpg">
                     </li>
-                    <li>
-                        <h4>Không cần chứng minh tài chính</h4>
+                    <li style="text-align: center">
+                        Không cần chứng minh tài chính
                     </li>
                 </ul>
                 <ul class="benefit_ul" style="list-style: none">
                     <li>
                         <img src="./img/benefit-3.jpg">
                     </li>
-                    <li>
-                        <h4>Học phí và phí sinh hoạt cạnh tranh</h4>
+                    <li style="text-align: center">
+                        Học phí và phí sinh hoạt cạnh tranh
                     </li>
                 </ul>
 
@@ -142,9 +143,9 @@
                     <li>
                         <img src="./img/benefit-4.jpg">
                     </li>
-                    <li>
-                        <h4>Đôi ngũ giáo viên là những chuyên gia trong các lĩnh vực chuyên môn, giàu kinh nghiệm trong
-                            việc giảng dạy học sinh quốc tế</h4>
+                    <li style="text-align: center">
+                        Đôi ngũ giáo viên là những chuyên gia trong các lĩnh vực chuyên môn, giàu kinh nghiệm trong
+                        việc giảng dạy học sinh quốc tế
                     </li>
                 </ul>
 
@@ -152,9 +153,9 @@
                     <li>
                         <img src="./img/benefit-5.jpg">
                     </li>
-                    <li>
-                        <h4>250 chương trình chuyển tiếp vào các trường Đại học hàng đầu của Úc sẽ giúp sinh viên hoàn
-                            thành con đường học vấn đỉnh cao</h4>
+                    <li style="text-align: center">
+                        250 chương trình chuyển tiếp vào các trường Đại học hàng đầu của Úc sẽ giúp sinh viên hoàn
+                        thành con đường học vấn đỉnh cao
                     </li>
                 </ul>
 
@@ -162,8 +163,8 @@
                     <li>
                         <img src="./img/benefit-6.jpg">
                     </li>
-                    <li>
-                        <h4>Sau khi tốt nghiệp học sinh được phép ở lại làm việc thêm 2 năm tại Úc</h4>
+                    <li style="text-align: center">
+                        Sau khi tốt nghiệp học sinh được phép ở lại làm việc thêm 2 năm tại Úc
                     </li>
                 </ul>
             </div>
@@ -202,9 +203,16 @@
                         </li>
                         <li>
                             Học sinh nhận được sự tư vấn hoàn thiện:
-                            <dd>-Củng cố nền tảng</dd>
-                            <dd>-Chọn trường phù hợp </dd>
-                            <dd>-Cơ hội nghề nghiệp</dd>
+                            <div style="padding: 0px;">
+                                <br>
+                                -Củng cố nền tảng
+                                <br>
+                                <br>
+                                -Chọn trường phù hợp
+                                <br>
+                                <br>
+                                -Cơ hội nghề nghiệp
+                            </div>
                         </li>
                     </ul>
                     <ul class="benefit_ulv2" style="list-style: none">
@@ -346,7 +354,7 @@
         var slideIndex = 1;
         var action;
         showDivs(slideIndex);
-        
+
         function plusDivs(n) {
             var t = slideIndex + n;
             if (t < 1) slideIndex = 4;
@@ -356,13 +364,13 @@
             showDivs(slideIndex);
 
         }
-        
+
         function showDivs(n) {
             document.getElementById("slideImg").style.backgroundImage = "url('./img/Slide" + n + ".png')";
-            action=setTimeout(function () {
+            action = setTimeout(function () {
                 slideIndex += 1;
-                if(slideIndex>4)slideIndex=1
-                showDivs(slideIndex);
+                if (slideIndex > 4) slideIndex = 1
+                showDivs(slideIndex);  
             }, 3000);
         }
         //end area slide show
