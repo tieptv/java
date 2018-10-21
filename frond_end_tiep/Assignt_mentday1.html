@@ -18,14 +18,15 @@
             <img id="img1" src="./img/logo-lisaho.png">
             <img id="img2" src="./img/logo-southbank.png">
             <h3 id="sdt"> HOTLINE:037483748347847</h3>
-            <button onclick="openform()" id="login_btn">Login</button>
+            <button onclick="openform(1)" id="login_btn">Login</button>
+            <button onclick="openform(2)"id="Regis_btn">Register</button>
         </div>
         <div id="background_image">
             <div id="input_image">
                 <div id="div_form">
                     <form id="login_form" name="cookieForm" style="padding-left:40px;" onsubmit="setCookie();" action="Assignt_mentday1.html"
                         method="POST">
-                        <h3 style="margin-left: 60px;">LOGIN</h3>
+                        <h3 style="margin-left: 60px;" id="title_form">LOGIN</h3>
                         <label for="fname">First Name</label>
                         <input type="text" id="fname" name="username" placeholder="UserName"><br>
 
@@ -376,10 +377,12 @@
         //end area slide show
         //start area login form
         var state_form = 0;
-        function openform() {
+        function openform(n) {
             if (state_form == 0) {
                 state_form = 1;
-                document.getElementById("div_form").style.display = "block"
+                if(n===1)document.getElementById("title_form").innerHTML="LOGIN";
+                else document.getElementById("title_form").innerHTML="REGISTER";
+                document.getElementById("div_form").style.display = "block";
             }
             else {
                 state_form = 0;

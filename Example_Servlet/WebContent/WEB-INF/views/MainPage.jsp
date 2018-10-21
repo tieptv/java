@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,48 +9,67 @@
     <title>Assignt ment 1</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles1.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 </head>
 
 <body style="margin: auto;max-width:1300px;" onload="readCookie();">
 
-    <!--cau1-->
-    <div style="clear: both;height: 500px;">
-        <div id="container">
-            <img id="img1" src="./img/logo-lisaho.png">
+    <!--cau1-->  
+    <div>
+       <ul id="menu">
+          <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+         <!-- <li><a href="${pageContext.request.contextPath}/customer">Customer</a></li>-->
+          <li><a href="${pageContext.request.contextPath}/car">Car</a></li>
+         <!-- <li><a href="${pageContext.request.contextPath}/carorder">CarOrder</a></li>-->
+          </ul>
+        <div id="container" >
+       
+            <img id="img1"  src="./img/logo-lisaho.png">
             <img id="img2" src="./img/logo-southbank.png">
             <h3 id="sdt"> HOTLINE:037483748347847</h3>
-            <button onclick="openform()" id="login_btn">Login</button>
+   <c:choose>
+   <c:when test = "${loginedUser != null}">    
+   <b id="email">${loginedUser.email}</b>
+   <a id="logout_link" href="${pageContext.request.contextPath}/logout">Logout</a>
+   </c:when>
+   <c:otherwise>
+    <button onclick="openform(1)" id="login_btn">Login</button>
+    <button onclick="openform(2)"id="Regis_btn">Register</button>
+   </c:otherwise>
+   </c:choose>
         </div>
         <div id="background_image">
             <div id="input_image">
                 <div id="div_form">
-                    <form id="login_form" name="cookieForm" style="padding-left:40px;" onsubmit="setCookie();" action="Assignt_mentday1.html"
+                    <form id="login_form" name="cookieForm" style="padding-left:40px;" onsubmit="setCookie();" action="${pageContext.request.contextPath}/home" 
                         method="POST">
-                        <h3 style="margin-left: 60px;">LOGIN</h3>
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="username" placeholder="UserName"><br>
+                        <h3 style="margin-left: 60px;" id="title_form">LOGIN</h3>
+                        <label >Email</label>
+                        <br>
+                        <input type="text" id="fname" name="email" placeholder="Email"><br>
 
-                        <label for="lname">PassWord</label>
+                        <label >PassWord</label>
                         <input type="password" id="lname" name="pwd" placeholder="password"><br>
 
-                        <label for="country">Remember me</label>
+                        <label >Remember me</label>
                         <br>
+                        <input type="text" style="display:none" id="status" name="status">
                         <input type="checkbox" name="persist">
                         <br>
-                        <input type="submit" value="Submit">
+                        <input  type="submit" value="Submit">
                     </form>
                 </div>
             </div>
         </div>
-
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
+</div>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br>
     <!--cau 2-->
-    <div style="height: 450px">
+    <div style="height: 450px;">
         <div>
             <img id="landpage3" src="./img/Landing-page_03.gif">
         </div>
@@ -85,7 +105,7 @@
                     <li>
                         <h3 class="step_text">BƯỚC 3:HOÀN THÀNH HỒ SƠ</h3>
                     </li>
-                    </li>
+                  
                     <li>
                         Chuyên gia tư vấn của chúng tôi sẽ hỗ trợ bạn hoàn thành hồ sơ nhập học và visa chu đáo
                     </li>
@@ -377,9 +397,15 @@
         //end area slide show
         //start area login form
         var state_form = 0;
-        function openform() {
+        function openform(n) {
             if (state_form == 0) {
                 state_form = 1;
+               if(n===1){document.getElementById("title_form").innerHTML="LOGIN";
+                         document.getElementById("status").value="login";
+                                    }
+                else{ document.getElementById("title_form").innerHTML="REGISTER";
+                      document.getElementById("status").value="regis";
+                                    }
                 document.getElementById("div_form").style.display = "block"
             }
             else {
@@ -428,6 +454,48 @@
             }
         }
          //end cookies login form
+         //start ajax validate Account
+           var sendajax = function() {
+        //Khoi tao doi tuong
+        var xhttp = new XMLHttpRequest() || ActiveXObject();
+        //Bat su kien thay doi trang thai cuar request
+        xhttp.onreadystatechange = function() {
+                //Kiem tra neu nhu da gui request thanh cong
+                if (this.readyState == 4 && this.status == 200) {
+                	document.getElementById("std").innerHTML =this.responseText;
+                }
+            }
+            //cau hinh request
+        xhttp.open('POST', 'processValidate.jsp', true);
+        //cau hinh header cho request
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //gui request
+        xhttp.send('data=true');
+    }
+         //end ajax validate Account
+         //validate form
+      $(function() {
+ 
+        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+        $('#login_form').validate({
+            rules: {
+                email: "email",
+                pwd: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                email: "Email không hợp lệ",
+                pwd: {
+                    required: "Vui lòng nhập password",
+                    minlength: "Password phải lớn hơn hoặc bằng 6 kí tự"
+                }
+            }
+        });
+      
+    })
+         //end validate form
     </script>
 
 </body>
