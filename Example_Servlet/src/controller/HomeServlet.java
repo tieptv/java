@@ -34,6 +34,7 @@ public class HomeServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("pwd");
 		String status = req.getParameter("status");
+        
 		log.debug(status);
 		Account account = AccountDao.instance().findAccount(email, password);
 		if ("login".equals(status)) {

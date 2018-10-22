@@ -9,8 +9,7 @@
     <title>Assignt ment 1</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles1.css">
-   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body style="margin: auto;max-width:1300px;" onload="readCookie();">
@@ -496,7 +495,8 @@
     })
          //end validate form
     </script>
-
+ <script src="js/bootstrap.min.css"> </script>
+  <script src="js/jquery-3.3.1.js"> </script>
 </body>
 
 </html>
