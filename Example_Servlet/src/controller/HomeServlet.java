@@ -56,7 +56,7 @@ public class HomeServlet extends HttpServlet {
 				Account a=new Account();
 				a.setEmail(email);
 				a.setPassword(password);
-				boolean flag=AccountDao.instance().insertAccount(a);
+				boolean flag=AccountDao.instance().insert(a);
 				  HttpSession session = req.getSession();
 				    MyUtils.storeLoginedUser(session, a);
 				RequestDispatcher dispatcher = this.getServletContext()

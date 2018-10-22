@@ -1,6 +1,13 @@
 package model;
 
 public class Account {
+private int id;
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
 private String email;
 private String password;
 public String getEmail() {

@@ -48,24 +48,26 @@
           <button type="button" class="btn btn-link" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Car</h4>
         </div>
-       <form id="form">
+       <form id="form" >
+       <label >ID</label>
+      <input type="text" class="form-control" id="text-id" >
 
-      <label for="email">Maker</label>
-      <input type="text" class="form-control" id="text-maker" placeholder="Maker">
+      <label >Maker</label>
+      <input type="text" class="form-control" id="text-maker" >
 
  
-      <label for="pwd">Model:</label>
-      <input type="text" class="form-control" id="text-model" placeholder="Model">
+      <label>Model:</label>
+      <input type="text" class="form-control" id="text-model" >
 
 
-      <label for="pwd">Year:</label>
-      <input type="text" class="form-control" id="text-year" placeholder="Year">
+      <label >Year:</label>
+      <input type="text" class="form-control" id="text-year" >
    
-       <label for="pwd">Color:</label>
-       <input type="text" class="form-control" id="text-color" placeholder="Color">
+       <label >Color:</label>
+       <input type="text" class="form-control" id="text-color" >
 
-       <label for="pwd">Note:</label>
-       <input type="text" class="form-control" id="text-note" placeholder="Note">
+       <label >Note:</label>
+       <input type="text" class="form-control" id="text-note" >
  </form>
         <div class="modal-footer">
          <button type="button" class="btn btn-success btn-save">OK</button>
@@ -79,13 +81,14 @@
   $(document).ready(function(){
 	  //----//
 	  $("body").on("click",".btn-update",function(){
-	    var carID = $(this).closest("tr").find("td:first").text();
+	    var carID = $(this).closest("tr").find("#c-id").text();
 		var maker = $(this).closest("tr").find("#c-maker").text();
 		var model = $(this).closest("tr").find("#c-model").text();
 		var manufactureYear = $(this).closest("tr").find("#c-year").text();
 		var color = $(this).closest("tr").find("#c-color").text();
 		var note = $(this).closest("tr").find("#c-note").text();
 		
+		$("#form").find("#text-id").val(carID);
 		$("#form").find("#text-maker").val(maker);
 		$("#form").find("#text-model").val(model);
 		$("#form").find("#text-year").val(manufactureYear);
@@ -93,37 +96,39 @@
 		$("#form").find("#text-note").val(note);
 	  })
 	  var self = $(this);
-	  $("#btn-save-update").click(function(){
-			var carID = $("#form").find("#text-car-id").val();
+	  $(".btn-save").click(function(){
+			var carID = $("#form").find("#text-id").val();
 			var maker = $("#form").find("#text-maker").val();
 			var model = $("#form").find("#text-model").val();
-			var year = $("#form").find("#text-manufacture-year").val();
+			var year = $("#form").find("#text-year").val();
 			var color = $("#form").find("#text-color").val();
 			var note = $("#form").find("#text-note").val();
+			console.log(carID);
 			
 			$.ajax({
-				url : "HomeServlet?method=updateCar",
+				url : "car",
 				type : "POST",
 				data : {
-					carID: parseInt(carID),
+					carID: carID,
 					maker: maker,
 					model: model,
-					manufactureYear: manufactureYear,
+					year: year,
 					color: color,
-					note: note
+					note: note,
+					method:"update"
 				},
 				success : function(value) {
 					if ("true" == value.toString()) {
-						$("#modelFormUpdateCar").modal("hide");
+						$("#myModal").modal("hide");
 						alert("Update successfully");
-						self.closest("tr").find("#p-maker").text(maker);
-						self.closest("tr").find("#p-model").text(model);
-						self.closest("tr").find("#p-manufacture-year").text(manufactureYear);
-						self.closest("tr").find("#p-color").text(color);
-						self.closest("tr").find("#p-note").text(note);
+						self.closest("tr").find("#c-maker").text(maker);
+						self.closest("tr").find("#c-model").text(model);
+						self.closest("tr").find("#c-year").text(year);
+						self.closest("tr").find("#c-color").text(color);
+						self.closest("tr").find("#c-note").text(note);
 						
 					} else {
-						$("#modelFormUpdateCar").modal("hide");
+						$("#myModal").modal("hide");
 						alert("Update error");
 					}
 
