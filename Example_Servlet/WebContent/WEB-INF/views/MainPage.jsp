@@ -57,7 +57,7 @@
                         <input type="text" style="display:none" id="status" name="status">
                         <input type="checkbox" name="persist">
                         <br>
-                        <input  type="submit" value="Submit">
+                        <input id="submit_btn" type="submit" value="Submit">
                     </form>
                 </div>
             </div>
@@ -455,23 +455,22 @@
         }
          //end cookies login form
          //start ajax validate Account
-           var sendajax = function() {
-        //Khoi tao doi tuong
-        var xhttp = new XMLHttpRequest() || ActiveXObject();
-        //Bat su kien thay doi trang thai cuar request
-        xhttp.onreadystatechange = function() {
-                //Kiem tra neu nhu da gui request thanh cong
-                if (this.readyState == 4 && this.status == 200) {
-                	document.getElementById("std").innerHTML =this.responseText;
-                }
-            }
-            //cau hinh request
-        xhttp.open('POST', 'processValidate.jsp', true);
-        //cau hinh header cho request
-        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        //gui request
-        xhttp.send('data=true');
-    }
+   jQuery(document).ready(function(){
+   jQuery("#submit_btn").click(function(){
+    jQuery.ajax({
+     type:"POST",
+     url:"home", 
+     data:{
+    	 email:email,
+    	 password:pwd,
+    	 status:status
+     },
+     success:function(n){
+       if(n.toString()==="1")alert("Đăng nhập thành công!");
+     }
+    });
+   });
+  });
          //end ajax validate Account
          //validate form
       $(function() {
