@@ -56,7 +56,7 @@
                         <input type="text" style="display:none" id="status" name="status">
                         <input type="checkbox" name="persist">
                         <br>
-                        <input id="submit_btn" type="submit" value="Submit">
+                        <input id="login_btn" type="submit" value="Submit">
                     </form>
                 </div>
             </div>

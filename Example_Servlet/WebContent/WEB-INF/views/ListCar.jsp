@@ -84,14 +84,14 @@
 	    var carID = $(this).closest("tr").find("#c-id").text();
 		var maker = $(this).closest("tr").find("#c-maker").text();
 		var model = $(this).closest("tr").find("#c-model").text();
-		var manufactureYear = $(this).closest("tr").find("#c-year").text();
+		var year = $(this).closest("tr").find("#c-year").text();
 		var color = $(this).closest("tr").find("#c-color").text();
 		var note = $(this).closest("tr").find("#c-note").text();
 		
 		$("#form").find("#text-id").val(carID);
 		$("#form").find("#text-maker").val(maker);
 		$("#form").find("#text-model").val(model);
-		$("#form").find("#text-year").val(manufactureYear);
+		$("#form").find("#text-year").val(year);
 		$("#form").find("#text-color").val(color);
 		$("#form").find("#text-note").val(note);
 	  })
@@ -119,14 +119,14 @@
 				},
 				success : function(value) {
 					if ("true" == value.toString()) {
-						$("#myModal").modal("hide");
-						alert("Update successfully");
+						
 						self.closest("tr").find("#c-maker").text(maker);
 						self.closest("tr").find("#c-model").text(model);
 						self.closest("tr").find("#c-year").text(year);
 						self.closest("tr").find("#c-color").text(color);
 						self.closest("tr").find("#c-note").text(note);
-						
+						$("#myModal").modal("hide");
+						alert("Update successfully");
 					} else {
 						$("#myModal").modal("hide");
 						alert("Update error");

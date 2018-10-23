@@ -23,7 +23,7 @@ public class HomeServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp");
 
 		dispatcher.forward(req, resp);
 	}
@@ -42,7 +42,7 @@ public class HomeServlet extends HttpServlet {
 			    HttpSession session = req.getSession();
 			    MyUtils.storeLoginedUser(session, account);
 				RequestDispatcher dispatcher = this.getServletContext()
-						.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
+						.getRequestDispatcher("/WEB-INF/views/home.jsp");
 				dispatcher.forward(req, resp);
 			} else {
 				resp.sendRedirect(req.getContextPath());
@@ -50,18 +50,22 @@ public class HomeServlet extends HttpServlet {
 		}
 		else {
 			if (account != null) {RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
+					.getRequestDispatcher("/WEB-INF/views/home.jsp");
 			dispatcher.forward(req, resp);}
 			else {
 				Account a=new Account();
 				a.setEmail(email);
 				a.setPassword(password);
 				boolean flag=AccountDao.instance().insert(a);
+				if(flag){
 				  HttpSession session = req.getSession();
 				    MyUtils.storeLoginedUser(session, a);
 				RequestDispatcher dispatcher = this.getServletContext()
-						.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
+						.getRequestDispatcher("/WEB-INF/views/home.jsp");
 				dispatcher.forward(req, resp);
+				}
+				else
+				resp.sendRedirect(req.getContextPath());
 			}
 		}
 	}
