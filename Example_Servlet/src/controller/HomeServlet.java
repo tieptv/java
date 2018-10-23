@@ -23,7 +23,7 @@ public class HomeServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
 
 		dispatcher.forward(req, resp);
 	}
@@ -42,7 +42,7 @@ public class HomeServlet extends HttpServlet {
 			    HttpSession session = req.getSession();
 			    MyUtils.storeLoginedUser(session, account);
 				RequestDispatcher dispatcher = this.getServletContext()
-						.getRequestDispatcher("/WEB-INF/views/home.jsp");
+						.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
 				dispatcher.forward(req, resp);
 			} else {
 				resp.sendRedirect(req.getContextPath());
@@ -50,7 +50,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		else {
 			if (account != null) {RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/home.jsp");
+					.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
 			dispatcher.forward(req, resp);}
 			else {
 				Account a=new Account();
@@ -61,7 +61,7 @@ public class HomeServlet extends HttpServlet {
 				  HttpSession session = req.getSession();
 				    MyUtils.storeLoginedUser(session, a);
 				RequestDispatcher dispatcher = this.getServletContext()
-						.getRequestDispatcher("/WEB-INF/views/home.jsp");
+						.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
 				dispatcher.forward(req, resp);
 				}
 				else

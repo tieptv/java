@@ -38,6 +38,7 @@ public class AccountDao implements Dao<Account> {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Account user = new Account();
+				user.setId(rs.getInt(1));
 				user.setEmail(rs.getString(2));
 				user.setPassword(rs.getString(3));
 				return user;
@@ -73,9 +74,23 @@ public class AccountDao implements Dao<Account> {
 		}
 	}
 	@Override
-	public boolean update(Account o) {
-		// TODO Auto-generated method stub
-		return false;
+	public String update(Account o) {
+		String sql="update Account set email=?,password=? where id=?";
+		try {
+			Connection con = ConnectDB.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, o.getEmail());
+			String pass=MyUtils.getSHA256Hash(o.getPassword());
+			ps.setString(2,pass);
+			ps.setInt(3,o.getId());
+			ps.executeUpdate();
+			ps.close();
+			con.close();
+			return pass ;
+		} catch (SQLException e) {
+			log.debug("error");
+			return "false";
+		}
 	}
 
 	@Override
@@ -99,6 +114,9 @@ public class AccountDao implements Dao<Account> {
              a.setPassword(rs.getString(3));
              list.add(a);
 			}
+			rs.close();
+			st.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,6 +129,8 @@ public class AccountDao implements Dao<Account> {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	public boolean delete(int a) {
+		return false;
+	}
 
 }
