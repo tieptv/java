@@ -9,7 +9,6 @@
     <title>Assignt ment 1</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles1.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body style="margin: auto;max-width:1300px;" onload="readCookie();">
@@ -495,7 +494,6 @@
     })
          //end validate form
     </script>
- <script src="js/bootstrap.min.css"> </script>
   <script src="js/jquery-3.3.1.js"> </script>
 </body>
 
