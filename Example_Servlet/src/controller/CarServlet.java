@@ -61,12 +61,16 @@ public class CarServlet extends HttpServlet {
 			c.setNote(request.getParameter("note"));
 			c.setId(request.getParameter("carID"));
 			log.info(c.getId());
-			boolean flag =CarDao.instance().update(c);
+			String flag =CarDao.instance().update(c);
 			response.setContentType("text/html");
 			PrintWriter out =response.getWriter();
-			if(flag)out.print("true");
+			if("true".equals(flag))out.print("true");
 			else out.print("false");
 			out.flush();
+		}
+		else if ("delete".equals(method)){
+			
+			
 		}
 	}
 

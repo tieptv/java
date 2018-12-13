@@ -57,11 +57,15 @@ public class HomeServlet extends HttpServlet {
 				a.setEmail(email);
 				a.setPassword(password);
 				boolean flag=AccountDao.instance().insert(a);
+				if(flag){
 				  HttpSession session = req.getSession();
 				    MyUtils.storeLoginedUser(session, a);
 				RequestDispatcher dispatcher = this.getServletContext()
 						.getRequestDispatcher("/WEB-INF/views/MainPage.jsp");
 				dispatcher.forward(req, resp);
+				}
+				else
+				resp.sendRedirect(req.getContextPath());
 			}
 		}
 	}

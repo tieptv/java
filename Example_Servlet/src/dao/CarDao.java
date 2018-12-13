@@ -52,7 +52,7 @@ public class CarDao implements Dao<Car>{
 	return false;
 	}
 	@Override
-	public boolean update(Car o) {
+	public String update(Car o) {
 		log.info(o.getId());
 		String sql="update car set maker=?,model=?,year=?,color=?,note=? where carid=?";
 		try {
@@ -67,9 +67,9 @@ public class CarDao implements Dao<Car>{
 			ps.executeUpdate();
 			ps.close();
 			con.close();
-			return true;
+			return "true";
 		} catch (SQLException e) {
-			return false;
+			return "false";
 		}
 	}
 	@Override
